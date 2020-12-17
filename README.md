@@ -118,6 +118,14 @@ XHCI-unsupported.kext | 0.9.2 | Needed for non-native USB controllers
 
 Driver | Purpose
 ------ | -------
-HfsPlus.efi | Needed for seeing HFS volumes(ie. macOS Installers and Recovery partitions/images) 
+HfsPlus.efi | Needed for seeing HFS volumes (ie. macOS Installers and Recovery partitions/images) 
 OpenRuntime.efi | Replacement for [AptioMemoryFix.efi](https://github.com/acidanthera/AptioFixPkg), used as an extension for OpenCore to help with patching boot.efi for NVRAM fixes and better memory management 
 OpenCanopy.efi | For GUI and boot-chime 
+
+## Useful Apps
+
+| App   | Home Page                        | Usage                              |
+| ----- | -------------------------------- | ---------------------------------- |
+| Stats | https://github.com/exelban/stats | Open source version of iStat Menus |
+
+
