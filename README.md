@@ -29,7 +29,7 @@
 - *HDMI*: can get working with extra hack for multi-screen setup; only receives signal after entring MacOS.
 
 ## OpenCore
-Version: 0.6.4
+Version: 0.6.9
 
 ## config.plist
 
@@ -103,15 +103,15 @@ Mostly following the OpenCore Install Guide [here](https://dortania.github.io/Op
 
 Kext | Version | Purpose
 ---- | ------- | -------
-AppleALC.kext | 1.5.5 | Driver for Realtek ALC233
-IntelMausi.kext | 1.0.4 | Driver for Intel® Gigabit I219V
-Lilu.kext | 1.5.0 | Fundation kext for many other kexts
-WhateverGreen.kext | 1.4.5 | A composite kext that addresses graphics related issues, requires `Lilu.kext`
-VirtualSMC.kext | 1.1.9 | SMC emulator, vital to booting hackintosh
-SMCProcessor.kext | 1.1.9 | Companion kext for `VirtualSMC.kext`
-SMCSuperIO.kext | 1.1.9 | Companion kext for `VirtualSMC.kext`
+AppleALC.kext | 1.6.0 | Driver for Realtek ALC233
+IntelMausi.kext | 1.0.6 | Driver for Intel® Gigabit I219V
+Lilu.kext | 1.5.3 | Fundation kext for many other kexts
+WhateverGreen.kext | 1.4.9 | A composite kext that addresses graphics related issues, requires `Lilu.kext`
+VirtualSMC.kext | 1.2.3 | SMC emulator, vital to booting hackintosh
+SMCProcessor.kext | 1.2.3 | Companion kext for `VirtualSMC.kext`
+SMCSuperIO.kext | 1.2.3 | Companion kext for `VirtualSMC.kext`
 USBPorts.kext | - | Customized kext to work around USB port limit
-NVMeFix.kext | 1.0.4 | Improve compatibility and power management of 3rd party M2 SSDs 
+NVMeFix.kext | 1.0.7 | Improve compatibility and power management of 3rd party M2 SSDs 
 XHCI-unsupported.kext | 0.9.2 | Needed for non-native USB controllers 
 
 ## Drivers
@@ -122,10 +122,24 @@ HfsPlus.efi | Needed for seeing HFS volumes (ie. macOS Installers and Recovery p
 OpenRuntime.efi | Replacement for [AptioMemoryFix.efi](https://github.com/acidanthera/AptioFixPkg), used as an extension for OpenCore to help with patching boot.efi for NVRAM fixes and better memory management 
 OpenCanopy.efi | For GUI and boot-chime 
 
+## Quick Tips
+
+- To make OpenCore remember last boot entry, use **CTRL + ENTER** to select the boot entry.
+
+- There are two ways to check the running OpenCore version:
+
+  1. Use the plain text theme and find the version at the bottom of the boot screen
+
+  2. Execute the following in a terminal (note that there was a bug in OpenCore prior to 0.6.7 that leads to stale version name written to the nvram, reset nvram to fix):
+
+     ```shell
+     % nvram 4D1FDA02-38C7-4A6A-9CC6-4BCCA8B30102:opencore-version
+     4D1FDA02-38C7-4A6A-9CC6-4BCCA8B30102:opencore-version	REL-069-2021-05-03
+     ```
+
 ## Useful Apps
 
 | App   | Home Page                        | Usage                              |
 | ----- | -------------------------------- | ---------------------------------- |
 | Stats | https://github.com/exelban/stats | Open source version of iStat Menus |
-
 
