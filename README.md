@@ -103,7 +103,7 @@ Mostly following the OpenCore Install Guide [here](https://dortania.github.io/Op
 
 Kext | Version | Purpose
 ---- | ------- | -------
-AppleALC.kext | 1.6.0 | Driver for Realtek ALC233
+AppleALC.kext | 1.5.8 | Driver for Realtek ALC233
 IntelMausi.kext | 1.0.6 | Driver for Intel® Gigabit I219V
 Lilu.kext | 1.5.3 | Fundation kext for many other kexts
 WhateverGreen.kext | 1.4.9 | A composite kext that addresses graphics related issues, requires `Lilu.kext`
