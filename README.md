@@ -10,7 +10,7 @@
 - [Drivers](#drivers)
 - [Quick Tips](#quick-tips)
 - [Useful Apps](#useful-apps)
-- [Installing/Dualbooting Windows](#installing-dualbooting-windows)
+- [Installing/Dualbooting Windows](#installingdualbooting-windows)
 
 
 ## Hardware
