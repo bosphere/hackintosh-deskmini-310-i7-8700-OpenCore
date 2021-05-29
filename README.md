@@ -1,5 +1,18 @@
 # hackintosh-deskmini-310-i7-8700-OpenCore
 
+- [Hardware](#hardware)
+- [BIOS](#bios)
+- [Display Connectors](#display-connectors)
+- [OpenCore](#opencore)
+- [config.plist](#configplist)
+- [ACPI](#acpi)
+- [Kexts](#kexts)
+- [Drivers](#drivers)
+- [Quick Tips](#quick-tips)
+- [Useful Apps](#useful-apps)
+- [Installing/Dualbooting Windows](#installing-dualbooting-windows)
+
+
 ## Hardware
 - Case & Mobo: ASRock DeskMini H310
 - CPU: Intel i7-8700 w/ Noctua NH-L9i
