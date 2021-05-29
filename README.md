@@ -95,8 +95,6 @@ Mostly following the OpenCore Install Guide [here](https://dortania.github.io/Op
 | SSDT-PMC.aml       | NVRAM support                                                |
 | SSDT-SBUS-MCHC.aml | Fix `AppleSMBus` support in macOS ([Reference](https://dortania.github.io/Getting-Started-With-ACPI/Universal/smbus.html#what-this-ssdt-does)) |
 
-
-
 ## Kexts
 
 > All of the following kexts are available on this [repo](https://1drv.ms/f/s!AiP7m5LaOED-m-J8-MLJGnOgAqnjGw) courtesy of Goldfish64. Each kext is auto-built whenever a new commit is made. ([Reference](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/gathering-kexts))
@@ -143,3 +141,38 @@ OpenCanopy.efi | For GUI and boot-chime
 | ----- | -------------------------------- | ---------------------------------- |
 | Stats | https://github.com/exelban/stats | Open source version of iStat Menus |
 
+## Installing/Dualbooting Windows
+
+- Recommended to create the Windows bootable USB installer on a Windows machine (either with the official Media Creation Tool or [Rufus](https://rufus.ie/) if you already have the ISO image). Making it on macOS with the rsync + wimlib approach wasn't successful in my several attempts.
+
+- AFAIK It's not possible to install Windows on a machine that has multiple EFI partitions, which happens if you are installing Windows on a separate disk. To work around this, I used DISM to apply the Windows image manually with the steps elaborated below:
+
+  1. Boot into the Windows installer and next all the way until you reach the "Where do you want to install Windows" page. Create the partition to host the Windows OS with your preferred size. In my experience, the installer will create 3 partitions automatically: EFI partition (100MB), MSR partition (16MB), and the Primary partition. Remember to format the Primary partition. Now, hit the cross button top right which will navigate you back to the installer home screen.
+
+  2. Press SHIFT + F10 to launch the Command Prompt.
+
+  3. Enter `diskpart` followed by `list vol`. From the list, locate the installer USB volume as well as the Windows volume that has just been created, note down their corresponding letter in the `Ltr` column. For illustration purpose, we'll use `C` as the Windows volume, and `D` as the installer USB volume. Enter `exit` to get back to where we started.
+
+  4. Enter the following to locate the index of the Windows edition you'd like to install (change `install.wim` to `install.esd` if the installer USB was created with the official Media Creation Tool):
+
+     ```shell
+     dism /Get-WimInfo /WimFile:D:\Sources\install.wim
+     ```
+
+     We'll assume the edition is at `Index: 1` here as an example.
+
+  5. Use the following command to apply the image and install Windows onto the target partition (again, change `install.wim` to `install.esd` if the installer USB was created with the official Media Creation Tool):
+
+     ```shell
+     dism /Apply-Image /ImageFile:D:\Sources\install.wim /index:1 /ApplyDir:C:\
+     ```
+
+  6. Now we need to install the Windows bootloader. Go back to `diskpart` then `list vol`, locate the EFI partition that the Windows installer created for us, then enter `select volume X` where `X` is the volume number. Once the correct volume is selected, enter `assign letter=Z` to make sure we can reference the volume by letter `Z` later. Enter `exit` to get back out. Lastly, enter the following to create the bootloader in the EFI partition so OpenCore can detect it later:
+
+     ```shell
+     bcdboot C:\Windows /s Z: /f UEFI
+     ```
+
+  7. You can now exit the installer, reboot, and launch Windows via OpenCore. If the Windows boot option is not picked up, ensure you have set `Misc - Security - ScanPolicy` to `0` in `config.plist`.
+
+  8. Necessary drivers i.e. WiFi, Bluetooth, Audio, Chipset, etc are included in the `WIN10_Drivers` folder.
