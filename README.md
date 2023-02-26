@@ -42,7 +42,7 @@
 - *HDMI*: can get working with extra hack for multi-screen setup; only receives signal after entring MacOS.
 
 ## OpenCore
-Version: 0.6.9
+Version: 0.8.9
 
 ## config.plist
 
@@ -114,15 +114,15 @@ Mostly following the OpenCore Install Guide [here](https://dortania.github.io/Op
 
 Kext | Version | Purpose
 ---- | ------- | -------
-AppleALC.kext | 1.5.8 | Driver for Realtek ALC233 (Mic & HDMI audio breaks in 1.5.9 and 1.6.0)
-IntelMausi.kext | 1.0.6 | Driver for Intel® Gigabit I219V
-Lilu.kext | 1.5.3 | Fundation kext for many other kexts
-WhateverGreen.kext | 1.4.9 | A composite kext that addresses graphics related issues, requires `Lilu.kext`
-VirtualSMC.kext | 1.2.3 | SMC emulator, vital to booting hackintosh
-SMCProcessor.kext | 1.2.3 | Companion kext for `VirtualSMC.kext`
-SMCSuperIO.kext | 1.2.3 | Companion kext for `VirtualSMC.kext`
+AppleALC.kext | 1.7.9 | Driver for Realtek ALC233 (Mic & HDMI audio breaks in 1.5.9 and 1.6.0)
+IntelMausi.kext | 1.0.7 | Driver for Intel® Gigabit I219V
+Lilu.kext | 1.6.3 | Fundation kext for many other kexts
+WhateverGreen.kext | 1.6.4 | A composite kext that addresses graphics related issues, requires `Lilu.kext`
+VirtualSMC.kext | 1.3.0 | SMC emulator, vital to booting hackintosh
+SMCProcessor.kext | 1.3.0 | Companion kext for `VirtualSMC.kext`
+SMCSuperIO.kext | 1.3.0 | Companion kext for `VirtualSMC.kext`
 USBPorts.kext | - | Customized kext to work around USB port limit
-NVMeFix.kext | 1.0.7 | Improve compatibility and power management of 3rd party M2 SSDs 
+NVMeFix.kext | 1.1.0 | Improve compatibility and power management of 3rd party M2 SSDs 
 XHCI-unsupported.kext | 0.9.2 | Needed for non-native USB controllers 
 
 ## Drivers
@@ -135,7 +135,7 @@ OpenCanopy.efi | For GUI and boot-chime
 
 ## Quick Tips
 
-- To make OpenCore remember last boot entry, use **CTRL + ENTER** to select the boot entry.
+- To make OpenCore remember last boot entry and set it as default, use **CTRL + ENTER** to select the boot entry.
 
 - There are two ways to check the running OpenCore version:
 
